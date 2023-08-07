@@ -1,35 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BurgerButton
 
-## Getting Started
+BurgerButton is a simple and easy-to-use hamburger menu React component. It allows you to quickly add a responsive hamburger button to your web applications. Just copy and paste the code into your project, and you're good to go!
 
-First, run the development server:
+## Usage
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+1. Copy the `BurgerButton` component code from below:
+
+```jsx
+import React, { useState } from 'react';
+
+const BurgerButton = () => {
+  const [burgerMenuIsOpen, setBurgerMenuIsOpen] = useState(false);
+
+  const toggleBurgerMenu = () => {
+    setBurgerMenuIsOpen((state) => !state);
+  };
+
+  return (
+    <div>
+      <button
+        className="flex flex-col gap-1"
+        onClick={toggleBurgerMenu}
+      >
+        <div
+          className={`w-10 h-1 transform rounded-md bg-green-200 duration-500 ${
+            burgerMenuIsOpen
+              ? 'rotate-45 origin-center translate-y-2'
+              : 'rotate-0'
+          }`}
+        ></div>
+        <div
+          className={`w-10 h-1 transform bg-green-200 rounded-md ${
+            burgerMenuIsOpen
+              ? 'opacity-0'
+              : 'opacity-100 duration-500'
+          }`}
+        ></div>
+        <div
+          className={`w-10 h-1 transform rounded-md duration-500 bg-green-200 ${
+            burgerMenuIsOpen
+              ? '-rotate-45 origin-center -translate-y-2'
+              : 'rotate-0'
+          }`}
+        ></div>
+      </button>
+
+      {burgerMenuIsOpen && (
+        <div className="pt-10">
+          <h1>Menu</h1>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default BurgerButton;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Use the `BurgerButton` component in your React application:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```jsx
+import React from 'react';
+import BurgerButton from './BurgerButton'; // Adjust the path to your BurgerButton file
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+const App = () => {
+  return (
+    <div>
+      {/* Your other content */}
+      <BurgerButton />
+    </div>
+  );
+};
 
-## Learn More
+export default App;
+```
 
-To learn more about Next.js, take a look at the following resources:
+That's it! Now you have a functional hamburger button in your application. Customize the button's appearance by tweaking the CSS classes as needed. Feel free to use and modify the `BurgerButton` component in your projects. Happy coding! 🍔🚀
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# BurgerButton
+This project is licensed under the [MIT License](LICENSE).
